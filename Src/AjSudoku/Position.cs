@@ -11,6 +11,7 @@ namespace AjSudoku
         private int range;
 
         private int [,] numbers;
+        private bool[, ,] impossible;
 
         public Position() 
             : this(9)
@@ -22,6 +23,7 @@ namespace AjSudoku
             this.size = size;
             this.range = (int) Math.Sqrt(size);
             this.numbers = new int[size, size];
+            this.impossible = new bool[size, size, size];
         }
 
         public int Size
@@ -48,17 +50,30 @@ namespace AjSudoku
             if (this.numbers[x, y] != 0)
                 throw new InvalidOperationException("Cell is not empty");
 
+            if (this.impossible[x, y, number - 1])
+                throw new InvalidOperationException("Number position is impossible");
+
             for (int k = 0; k < this.size; k++)
-                if (this.numbers[k, y] == number || this.numbers[x, k] == number)
-                    throw new InvalidOperationException("Number is in the same row or column");
+            {
+                //if (this.numbers[k, y] == number || this.numbers[x, k] == number)
+                //    throw new InvalidOperationException("Number is in the same row or column");
+                this.impossible[k, y, number - 1] = true;
+                this.impossible[x, k, number - 1] = true;
+            }
 
             int ix = x / this.range;
             int iy = y / this.range;
 
+            ix *= this.range;
+            iy *= this.range;
+
             for (int k = 0; k < this.range; k++)
                 for (int j = 0; j < this.range; j++)
-                    if (this.numbers[ix + k, iy + j] == number)
-                        throw new InvalidOperationException("Number is in the same square");
+                {
+                    //if (this.numbers[ix + k, iy + j] == number)
+                    //    throw new InvalidOperationException("Number is in the same square");
+                    this.impossible[ix + k, iy + j, number - 1] = true;
+                }
 
             this.numbers[x, y] = number;
         }
@@ -71,17 +86,20 @@ namespace AjSudoku
             if (this.numbers[x, y] != 0)
                 return false;
 
-            for (int k = 0; k < this.size; k++)
-                if (this.numbers[k, y] == number || this.numbers[x, k] == number)
-                    return false;
+            if (this.impossible[x, y, number - 1])
+                return false;
 
-            int ix = x / this.range;
-            int iy = y / this.range;
+            //for (int k = 0; k < this.size; k++)
+            //    if (this.numbers[k, y] == number || this.numbers[x, k] == number)
+            //        return false;
 
-            for (int k = 0; k < this.range; k++)
-                for (int j = 0; j < this.range; j++)
-                    if (this.numbers[ix + k, iy + j] == number)
-                        return false;
+            //int ix = x / this.range;
+            //int iy = y / this.range;
+
+            //for (int k = 0; k < this.range; k++)
+            //    for (int j = 0; j < this.range; j++)
+            //        if (this.numbers[ix + k, iy + j] == number)
+            //            return false;
 
             return true;
         }
@@ -89,6 +107,27 @@ namespace AjSudoku
         public int GetNumberAt(int x, int y)
         {
             return this.numbers[x, y];
+        }
+
+        public int GetUniqueNumberAt(int x, int y)
+        {
+            if (numbers[x, y] != 0)
+                return 0;
+
+            int npossibles = 0;
+            int number = 0;
+
+            for (int k = 0; k < this.size; k++)
+                if (!impossible[x, y, k])
+                {
+                    npossibles++;
+                    number = k + 1;
+                }
+
+            if (npossibles==1)
+                return number;
+
+            return 0;
         }
 
         public Position Clone()
