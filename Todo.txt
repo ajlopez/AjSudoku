@@ -1,0 +1,8 @@
+
+AjSudoku To do list
+
+- Game examples
+- More solver tests
+- Ensure Diabolic games are solved
+- Other input formats
+- GUI version

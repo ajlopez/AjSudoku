@@ -130,7 +130,8 @@ namespace AjSudoku
                         cells.Add(new CellInfo() { number = number, x = x, y = y });
                     }
 
-                results.Add(cells);
+                if (cells.Count>0)
+                    results.Add(cells);
             }
 
             for (int y = 0; y < position.Size; y++)
@@ -143,7 +144,8 @@ namespace AjSudoku
                         cells.Add(new CellInfo() { number = number, x = x, y = y });
                     }
 
-                results.Add(cells);
+                if (cells.Count>0)
+                    results.Add(cells);
             }
 
             for (int ix = 0; ix < position.Size; ix += position.Range)
@@ -160,7 +162,8 @@ namespace AjSudoku
                             }
                         }
 
-                    results.Add(cells);
+                    if (cells.Count>0)
+                        results.Add(cells);
                 }
 
             return results;

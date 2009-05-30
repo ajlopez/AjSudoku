@@ -1,0 +1,11 @@
+
+2009-05-26	
+Initial Project in ajcodekatas
+Cell, Position, Number, tests
+
+2009-05-28
+Solver, AjSudoku.Console
+
+2009-05-30
+Solver tests
+Branches and backtrack in Console

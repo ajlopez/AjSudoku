@@ -53,6 +53,14 @@ namespace AjSudoku.Console
 
                 List<List<CellInfo>> results = solver.GetPossibleMoves(position);
 
+                if (results.Count == 0)
+                {
+                    System.Console.WriteLine("No Branch");
+                    continue;
+                }
+
+                bool hasbranches = false;
+
                 foreach (List<CellInfo> cells in results)
                 {
                     if (cells.Count != 2)
@@ -67,8 +75,13 @@ namespace AjSudoku.Console
                         positions.Push(newposition);
                     }
 
+                    hasbranches = true;
+
                     break;
                 }
+
+                if (!hasbranches)
+                    System.Console.WriteLine("No Branch 2");
             }
 
             System.Console.ReadLine();
