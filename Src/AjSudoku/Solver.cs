@@ -87,5 +87,83 @@ namespace AjSudoku
 
             return null;
         }
+
+        public List<List<CellInfo>> GetPossibleMoves(Position position)
+        {
+            List<List<CellInfo>> possibles = new List<List<CellInfo>>();
+
+            for (int number = 1; number <= position.Size; number++)
+            {
+                possibles.AddRange(GetPossibleMoves(number, position));
+            }
+
+            int n;
+
+            for (int x = 0; x < position.Size; x++)
+                for (int y = 0; y < position.Size; y++)
+                {
+                    List<CellInfo> cells = new List<CellInfo>();
+
+                    foreach (int number in position.GetPossibleNumbersAt(x, y))
+                    {
+                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                    }
+
+                    if (cells.Count > 0)
+                        possibles.Add(cells);
+                }
+
+            return possibles;
+        }
+
+        public List<List<CellInfo>> GetPossibleMoves(int number, Position position)
+        {
+            List<List<CellInfo>> results = new List<List<CellInfo>>();
+
+            for (int x = 0; x < position.Size; x++)
+            {
+                List<CellInfo> cells = new List<CellInfo>();
+
+                for (int y = 0; y < position.Size; y++)
+                    if (position.CanPutNumberAt(number, x, y))
+                    {
+                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                    }
+
+                results.Add(cells);
+            }
+
+            for (int y = 0; y < position.Size; y++)
+            {
+                List<CellInfo> cells = new List<CellInfo>();
+
+                for (int x = 0; x < position.Size; x++)
+                    if (position.CanPutNumberAt(number, x, y))
+                    {
+                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                    }
+
+                results.Add(cells);
+            }
+
+            for (int ix = 0; ix < position.Size; ix += position.Range)
+                for (int iy = 0; iy < position.Size; iy += position.Range)
+                {
+                    List<CellInfo> cells = new List<CellInfo>();
+
+                    for (int x = 0; x < position.Range; x++)
+                        for (int y = 0; y < position.Range; y++)
+                        {
+                            if (position.CanPutNumberAt(number, ix + x, iy + y))
+                            {
+                                cells.Add(new CellInfo() { number = number, x = ix + x, y = iy + y});
+                            }
+                        }
+
+                    results.Add(cells);
+                }
+
+            return results;
+        }
     }
 }

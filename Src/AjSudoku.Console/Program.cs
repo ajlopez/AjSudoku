@@ -9,6 +9,9 @@ namespace AjSudoku.Console
 {
     class Program
     {
+        static Stack<Position> positions = new Stack<Position>();
+        static Solver solver = new Solver();
+
         static void Main(string[] args)
         {
             string gametxt = args[0];
@@ -25,20 +28,47 @@ namespace AjSudoku.Console
                     position.PutNumberAt(cell - '0', x, y);
             }
 
-            DumpPosition(position);
+            positions.Push(position);
 
-            Solver solver = new Solver();
-
-            CellInfo ci = solver.Resolve(position);
-
-            while (ci != null)
+            while (positions.Count>0)
             {
-                System.Console.WriteLine(String.Format("{0} at {1} {2}", ci.number, ci.x+1, ci.y+1));
+                position = positions.Pop();
 
-                position.PutNumberAt(ci.number, ci.x, ci.y);
                 DumpPosition(position);
 
-                ci = solver.Resolve(position);
+                CellInfo ci = solver.Resolve(position);
+
+                while (ci != null)
+                {
+                    System.Console.WriteLine(String.Format("{0} at {1} {2}", ci.number, ci.x + 1, ci.y + 1));
+
+                    position.PutNumberAt(ci.number, ci.x, ci.y);
+                    DumpPosition(position);
+
+                    ci = solver.Resolve(position);
+                }
+
+                if (position.Solved)
+                    break;
+
+                List<List<CellInfo>> results = solver.GetPossibleMoves(position);
+
+                foreach (List<CellInfo> cells in results)
+                {
+                    if (cells.Count != 2)
+                        continue;
+
+                    foreach (CellInfo cell in cells)
+                    {
+                        System.Console.WriteLine(String.Format("Branch {0} at {1} {2}", cell.number, cell.x + 1, cell.y + 1));
+                        Position newposition = position.Clone();
+                        newposition.PutNumberAt(cell.number, cell.x, cell.y);
+                        DumpPosition(newposition);
+                        positions.Push(newposition);
+                    }
+
+                    break;
+                }
             }
 
             System.Console.ReadLine();

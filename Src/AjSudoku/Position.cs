@@ -78,6 +78,19 @@ namespace AjSudoku
             this.numbers[x, y] = number;
         }
 
+        public bool Solved
+        {
+            get
+            {
+                for (int x = 0; x < this.size; x++)
+                    for (int y = 0; y < this.size; y++)
+                        if (this.numbers[x, y] == 0)
+                            return false;
+
+                return true;
+            }
+        }
+
         public bool CanPutNumberAt(int number, int x, int y)
         {
             if (number <= 0 || number > this.size)
@@ -109,6 +122,22 @@ namespace AjSudoku
             return this.numbers[x, y];
         }
 
+        public List<int> GetPossibleNumbersAt(int x, int y)
+        {
+            List<int> result = new List<int>();
+
+            if (numbers[x, y] != 0)
+                return result;
+
+            for (int k = 0; k < this.size; k++)
+                if (!impossible[x, y, k])
+                {
+                    result.Add(k + 1);
+                }
+
+            return result;
+        }
+
         public int GetUniqueNumberAt(int x, int y)
         {
             if (numbers[x, y] != 0)
@@ -134,9 +163,12 @@ namespace AjSudoku
         {
             Position position = new Position(this.size);
 
-            for (int x = 0; x < this.size; x++)
-                for (int y = 0; y < this.size; y++)
-                    position.numbers[x, y] = this.numbers[x, y];
+            Array.Copy(this.numbers, position.numbers, this.numbers.Length);
+            Array.Copy(this.impossible, position.impossible, this.impossible.Length);
+
+            //for (int x = 0; x < this.size; x++)
+            //    for (int y = 0; y < this.size; y++)
+            //        position.numbers[x, y] = this.numbers[x, y];
 
             return position;
         }
