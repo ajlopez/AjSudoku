@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjSudoku
+﻿namespace AjSudoku
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class Solver
     {
         public CellInfo Resolve(Position position)
@@ -13,7 +13,7 @@ namespace AjSudoku
 
             for (int number = 1; number <= position.Size; number++)
             {
-                ci = Resolve(number, position);
+                ci = this.Resolve(number, position);
 
                 if (ci != null)
                     return ci;
@@ -24,7 +24,7 @@ namespace AjSudoku
             for (int x = 0; x < position.Size; x++)
                 for (int y = 0; y < position.Size; y++)
                     if ((n = position.GetUniqueNumberAt(x, y)) > 0)
-                        return new CellInfo() { number = n, x = x, y = y };
+                        return new CellInfo() { Number = n, X = x, Y = y };
 
             return null;
         }
@@ -44,7 +44,7 @@ namespace AjSudoku
                     }
 
                 if (npossible == 1)
-                    return new CellInfo() { number = number, x = x, y = ny };
+                    return new CellInfo() { Number = number, X = x, Y = ny };
             }
 
             for (int y = 0; y < position.Size; y++)
@@ -60,7 +60,7 @@ namespace AjSudoku
                     }
 
                 if (npossible == 1)
-                    return new CellInfo() { number = number, x = nx, y = y };
+                    return new CellInfo() { Number = number, X = nx, Y = y };
             }
 
             for (int ix = 0; ix < position.Size; ix += position.Range)
@@ -82,7 +82,7 @@ namespace AjSudoku
                         }
 
                     if (npossible == 1)
-                        return new CellInfo() { number = number, x = nx, y = ny };
+                        return new CellInfo() { Number = number, X = nx, Y = ny };
                 }
 
             return null;
@@ -94,10 +94,8 @@ namespace AjSudoku
 
             for (int number = 1; number <= position.Size; number++)
             {
-                possibles.AddRange(GetPossibleMoves(number, position));
+                possibles.AddRange(this.GetPossibleMoves(number, position));
             }
-
-            int n;
 
             for (int x = 0; x < position.Size; x++)
                 for (int y = 0; y < position.Size; y++)
@@ -106,7 +104,7 @@ namespace AjSudoku
 
                     foreach (int number in position.GetPossibleNumbersAt(x, y))
                     {
-                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                        cells.Add(new CellInfo() { Number = number, X = x, Y = y });
                     }
 
                     if (cells.Count > 0)
@@ -127,10 +125,10 @@ namespace AjSudoku
                 for (int y = 0; y < position.Size; y++)
                     if (position.CanPutNumberAt(number, x, y))
                     {
-                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                        cells.Add(new CellInfo() { Number = number, X = x, Y = y });
                     }
 
-                if (cells.Count>0)
+                if (cells.Count > 0)
                     results.Add(cells);
             }
 
@@ -141,10 +139,10 @@ namespace AjSudoku
                 for (int x = 0; x < position.Size; x++)
                     if (position.CanPutNumberAt(number, x, y))
                     {
-                        cells.Add(new CellInfo() { number = number, x = x, y = y });
+                        cells.Add(new CellInfo() { Number = number, X = x, Y = y });
                     }
 
-                if (cells.Count>0)
+                if (cells.Count > 0)
                     results.Add(cells);
             }
 
@@ -158,11 +156,11 @@ namespace AjSudoku
                         {
                             if (position.CanPutNumberAt(number, ix + x, iy + y))
                             {
-                                cells.Add(new CellInfo() { number = number, x = ix + x, y = iy + y});
+                                cells.Add(new CellInfo() { Number = number, X = ix + x, Y = iy + y });
                             }
                         }
 
-                    if (cells.Count>0)
+                    if (cells.Count > 0)
                         results.Add(cells);
                 }
 

@@ -12,7 +12,7 @@
     public class PositionTests
     {
         [TestMethod]
-        public void ShouldCreatePosition()
+        public void CreatePosition()
         {
             Position position = new Position();
 
@@ -21,7 +21,7 @@
         }
 
         [TestMethod]
-        public void ShouldPutANumber()
+        public void PutANumber()
         {
             Position position = new Position();
 
@@ -32,7 +32,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumberIsTooLarge()
+        public void RaiseIfNumberIsTooLarge()
         {
             Position position = new Position();
 
@@ -41,7 +41,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumberIsNegative()
+        public void RaiseIfNumberIsNegative()
         {
             Position position = new Position();
 
@@ -50,7 +50,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumberIsZero()
+        public void RaiseIfNumberIsZero()
         {
             Position position = new Position();
 
@@ -59,7 +59,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfCellIsNotEmpty()
+        public void RaiseIfCellIsNotEmpty()
         {
             Position position = new Position();
 
@@ -69,7 +69,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumbersAreInARow()
+        public void RaiseIfNumbersAreInARow()
         {
             Position position = new Position();
 
@@ -79,7 +79,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumbersAreInAColumn()
+        public void RaiseIfNumbersAreInAColumn()
         {
             Position position = new Position();
 
@@ -89,7 +89,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfNumberAreInSameSquare()
+        public void RaiseIfNumberAreInSameSquare()
         {
             Position position = new Position();
 
@@ -98,7 +98,7 @@
         }
 
         [TestMethod]
-        public void ShouldDetectColisions()
+        public void DetectColisions()
         {
             Position position = new Position();
 
@@ -111,7 +111,7 @@
         }
 
         [TestMethod]
-        public void ShouldValidMoves()
+        public void ValidMoves()
         {
             Position position = new Position();
 
@@ -129,7 +129,7 @@
         }
 
         [TestMethod]
-        public void ShouldClone()
+        public void Clone()
         {
             Position position = new Position();
 

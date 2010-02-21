@@ -6,14 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AjSudoku.Tests
 {
-    /// <summary>
-    /// Summary description for SolverTests
-    /// </summary>
     [TestClass]
     public class SolverTests
     {
         [TestMethod]
-        public void ShouldGetPossibleMoves()
+        public void GetPossibleMoves()
         {
             Position position = new Position();
             Solver solver = new Solver();
@@ -28,7 +25,7 @@ namespace AjSudoku.Tests
         }
 
         [TestMethod]
-        public void ShouldNotResolveEmptyPosition()
+        public void NotResolveEmptyPosition()
         {
             Position position = new Position();
             Solver solver = new Solver();

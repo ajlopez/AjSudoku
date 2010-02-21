@@ -9,3 +9,7 @@ Solver, AjSudoku.Console
 2009-05-30
 Solver tests
 Branches and backtrack in Console
+
+2010-02-21
+Refactoring code, StyleCop 0 warnings
+Removing Number, Cell classes

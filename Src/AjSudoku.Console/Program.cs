@@ -40,9 +40,9 @@ namespace AjSudoku.Console
 
                 while (ci != null)
                 {
-                    System.Console.WriteLine(String.Format("{0} at {1} {2}", ci.number, ci.x + 1, ci.y + 1));
+                    System.Console.WriteLine(String.Format("{0} at {1} {2}", ci.Number, ci.X + 1, ci.Y + 1));
 
-                    position.PutNumberAt(ci.number, ci.x, ci.y);
+                    position.PutNumberAt(ci.Number, ci.X, ci.Y);
                     DumpPosition(position);
 
                     ci = solver.Resolve(position);
@@ -68,9 +68,9 @@ namespace AjSudoku.Console
 
                     foreach (CellInfo cell in cells)
                     {
-                        System.Console.WriteLine(String.Format("Branch {0} at {1} {2}", cell.number, cell.x + 1, cell.y + 1));
+                        System.Console.WriteLine(String.Format("Branch {0} at {1} {2}", cell.Number, cell.X + 1, cell.Y + 1));
                         Position newposition = position.Clone();
-                        newposition.PutNumberAt(cell.number, cell.x, cell.y);
+                        newposition.PutNumberAt(cell.Number, cell.X, cell.Y);
                         DumpPosition(newposition);
                         positions.Push(newposition);
                     }
