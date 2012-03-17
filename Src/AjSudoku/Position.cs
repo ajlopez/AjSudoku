@@ -188,7 +188,7 @@
                 char cell = cells[k];
 
                 if (cell >= '1' && cell <= '9')
-                    this.numbers[x, y] = cell - '0';
+                    this.PutNumberAt(cell - '0', x, y);
             }
         }
     }

@@ -15,18 +15,7 @@ namespace AjSudoku.Console
         static void Main(string[] args)
         {
             string gametxt = args[0];
-            Position position = new Position();
-
-            for (int k = 0; k < gametxt.Length; k++)
-            {
-                int x = k % 9;
-                int y = k / 9;
-
-                char cell = gametxt[k];
-
-                if (cell >= '1' && cell <= '9')
-                    position.PutNumberAt(cell - '0', x, y);
-            }
+            Position position = new Position(gametxt);
 
             positions.Push(position);
 

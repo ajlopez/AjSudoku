@@ -29,6 +29,11 @@
             Assert.AreEqual(3, position.Range);
 
             Assert.AreEqual(0, position.GetCellsWithNumbers().Count);
+
+            var result = position.GetPossibleNumbersAt(0, 0);
+
+            for (int k = 1; k <= 9; k++)
+                Assert.IsTrue(result.Contains(k));
         }
 
         [TestMethod]
@@ -45,6 +50,11 @@
             Assert.AreEqual(9, cells[0].Number);
             Assert.AreEqual(0, cells[0].X);
             Assert.AreEqual(0, cells[0].Y);
+
+            var result = position.GetPossibleNumbersAt(1, 0);
+
+            for (int k = 1; k < 9; k++)
+                Assert.IsTrue(result.Contains(k));
         }
 
         [TestMethod]
