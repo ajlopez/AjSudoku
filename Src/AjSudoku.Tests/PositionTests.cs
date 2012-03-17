@@ -21,6 +21,71 @@
         }
 
         [TestMethod]
+        public void CreatePositionFromEmptyString()
+        {
+            Position position = new Position(string.Empty);
+
+            Assert.AreEqual(9, position.Size);
+            Assert.AreEqual(3, position.Range);
+
+            Assert.AreEqual(0, position.GetCellsWithNumbers().Count);
+        }
+
+        [TestMethod]
+        public void CreatePositionWithOneNumber()
+        {
+            Position position = new Position("9");
+
+            Assert.AreEqual(9, position.Size);
+            Assert.AreEqual(3, position.Range);
+
+            var cells = position.GetCellsWithNumbers();
+
+            Assert.AreEqual(1, cells.Count);
+            Assert.AreEqual(9, cells[0].Number);
+            Assert.AreEqual(0, cells[0].X);
+            Assert.AreEqual(0, cells[0].Y);
+        }
+
+        [TestMethod]
+        public void CreatePositionWithTwoNumbersAtFirstRow()
+        {
+            Position position = new Position("89");
+
+            Assert.AreEqual(9, position.Size);
+            Assert.AreEqual(3, position.Range);
+
+            var cells = position.GetCellsWithNumbers();
+
+            Assert.AreEqual(2, cells.Count);
+            Assert.AreEqual(8, cells[0].Number);
+            Assert.AreEqual(0, cells[0].X);
+            Assert.AreEqual(0, cells[0].Y);
+            Assert.AreEqual(9, cells[1].Number);
+            Assert.AreEqual(1, cells[1].X);
+            Assert.AreEqual(0, cells[1].Y);
+        }
+
+        [TestMethod]
+        public void CreatePositionWithTwoNumbersAtFirstColumn()
+        {
+            Position position = new Position("8........9");
+
+            Assert.AreEqual(9, position.Size);
+            Assert.AreEqual(3, position.Range);
+
+            var cells = position.GetCellsWithNumbers();
+
+            Assert.AreEqual(2, cells.Count);
+            Assert.AreEqual(8, cells[0].Number);
+            Assert.AreEqual(0, cells[0].X);
+            Assert.AreEqual(0, cells[0].Y);
+            Assert.AreEqual(9, cells[1].Number);
+            Assert.AreEqual(0, cells[1].X);
+            Assert.AreEqual(1, cells[1].Y);
+        }
+
+        [TestMethod]
         public void PutANumber()
         {
             Position position = new Position();

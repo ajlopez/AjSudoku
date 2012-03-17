@@ -14,16 +14,28 @@
         private bool[,,] impossible;
 
         public Position() 
-            : this(9)
+            : this(9, null)
         {
         }
 
-        public Position(int size) 
+        public Position(string cells)
+            : this(9, cells)
+        {
+        }
+
+        public Position(int size)
+            : this(size, null)
+        {
+        }
+
+        public Position(int size, string cells) 
         {
             this.size = size;
             this.range = (int) Math.Sqrt(size);
             this.numbers = new int[size, size];
             this.impossible = new bool[size, size, size];
+
+            this.SetCells(cells);
         }
 
         public int Size
@@ -149,6 +161,35 @@
             Array.Copy(this.impossible, position.impossible, this.impossible.Length);
 
             return position;
+        }
+
+        public IList<CellInfo> GetCellsWithNumbers()
+        {
+            IList<CellInfo> cells = new List<CellInfo>();
+
+            for (int k = 0; k < this.size; k++)
+                for (int j = 0; j < this.size; j++)
+                    if (this.numbers[k, j] != 0)
+                        cells.Add(new CellInfo() { Number = this.numbers[k, j], X = k, Y = j });
+
+            return cells;
+        }
+
+        private void SetCells(string cells)
+        {
+            if (string.IsNullOrEmpty(cells))
+                return;
+
+            for (int k = 0; k < cells.Length; k++)
+            {
+                int x = k % 9;
+                int y = k / 9;
+
+                char cell = cells[k];
+
+                if (cell >= '1' && cell <= '9')
+                    this.numbers[x, y] = cell - '0';
+            }
         }
     }
 }
