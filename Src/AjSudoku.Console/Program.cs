@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using AjSudoku;
-
-namespace AjSudoku.Console
+﻿namespace AjSudoku.Console
 {
-    class Program
-    {
-        static Stack<Position> positions = new Stack<Position>();
-        static Solver solver = new Solver();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-        static void Main(string[] args)
+    using AjSudoku;
+
+    public class Program
+    {
+        private static Stack<Position> positions = new Stack<Position>();
+        private static Solver solver = new Solver();
+
+        public static void Main(string[] args)
         {
             string gametxt = args[0];
             Position position = new Position(gametxt);
 
             positions.Push(position);
 
-            while (positions.Count>0)
+            while (positions.Count > 0)
             {
                 position = positions.Pop();
 
@@ -84,7 +84,7 @@ namespace AjSudoku.Console
                 {
                     int number = p.GetNumberAt(x, y);
 
-                    char cell = (char) (number + '0');
+                    char cell = (char)(number + '0');
 
                     if (number == 0)
                         cell = '.';
@@ -92,6 +92,7 @@ namespace AjSudoku.Console
                     System.Console.Write(' ');
                     System.Console.Write(cell);
                 }
+
                 System.Console.WriteLine();
             }
         }

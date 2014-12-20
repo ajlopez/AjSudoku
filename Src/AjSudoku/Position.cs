@@ -31,7 +31,7 @@
         public Position(int size, string cells) 
         {
             this.size = size;
-            this.range = (int) Math.Sqrt(size);
+            this.range = (int)Math.Sqrt(size);
             this.numbers = new int[size, size];
             this.impossible = new bool[size, size, size];
 

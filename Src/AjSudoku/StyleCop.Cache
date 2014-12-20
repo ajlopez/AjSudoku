@@ -70,43 +70,52 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>02/21/2010 08:37:57</timestamp>
-      <milliseconds>23</milliseconds>
-    </settings>
-    <timestamp>05/26/2009 17:00:32</timestamp>
-    <milliseconds>758</milliseconds>
-    <violations />
-  </sourcecode>
+  <project key="370394482">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <project key="1669323638">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="CellInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>02/21/2010 08:37:57</timestamp>
-      <milliseconds>23</milliseconds>
+      <timestamp>12/20/2014 05:53:43</timestamp>
+      <milliseconds>56</milliseconds>
     </settings>
-    <timestamp>02/21/2010 09:22:17</timestamp>
-    <milliseconds>575</milliseconds>
+    <timestamp>03/17/2012 18:11:50</timestamp>
+    <milliseconds>422</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/20/2014 05:53:43</timestamp>
+      <milliseconds>56</milliseconds>
+    </settings>
+    <timestamp>03/17/2012 18:11:50</timestamp>
+    <milliseconds>424</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="Solver.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>02/21/2010 08:37:57</timestamp>
-      <milliseconds>23</milliseconds>
+      <timestamp>12/20/2014 05:53:43</timestamp>
+      <milliseconds>56</milliseconds>
     </settings>
-    <timestamp>02/21/2010 09:22:42</timestamp>
-    <milliseconds>717</milliseconds>
+    <timestamp>03/17/2012 18:11:50</timestamp>
+    <milliseconds>449</milliseconds>
     <violations />
   </sourcecode>
-  <project key="370394482">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="Position.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>02/21/2010 08:37:57</timestamp>
-      <milliseconds>23</milliseconds>
+      <timestamp>12/20/2014 05:53:43</timestamp>
+      <milliseconds>56</milliseconds>
     </settings>
-    <timestamp>02/21/2010 09:22:53</timestamp>
-    <milliseconds>5</milliseconds>
-    <violations />
+    <timestamp>03/17/2012 18:11:50</timestamp>
+    <milliseconds>423</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.SpacingRules" rule="ClosingParenthesisMustBeSpacedCorrectly" ruleCheckId="SA1009">
+        <context>Invalid spacing around the closing parenthesis.</context>
+        <line>34</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
   </sourcecode>
 </stylecopresultscache>
